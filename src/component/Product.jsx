@@ -1,93 +1,69 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-
+import { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import fallbackImage from "../assets/banner3.png";
+import { REST_HOST_NAME, SERVICE_ENDPOINT } from "../backend";
 
 function Product() {
+  const [product, setProduct] = useState([]);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    fetch(
+      "https://api.allorigins.win/raw?url=https://fakerestaurantapi.runasp.net/api/Restaurant/items"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+        console.log(data);
+        
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  }, []);
+
   return (
-    <Box className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
-    <Card  className='w-60 h-60 flex flex-col  justify-between items-center p-5'>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        
-        className=' '
-        sx={{width:"100px"}}
-        image="src\assets\logo.png"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div" sx={{padding:"0",margin:"0"}}>
-          Lizard
-        </Typography>
-        
-      </CardContent>
-      <CardActions>
-     <Button sx={{margin:"0",backgroundColor:"#6d4c41",color:'white'}}  >Add To Card</Button>
-      </CardActions>
-    </Card>
-
-    <Card  className='w-60 h-60 flex flex-col  justify-between items-center p-5'>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        
-        className=' '
-        sx={{width:"100px"}}
-        image="src\assets\logo.png"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div" sx={{padding:"0",margin:"0"}}>
-          Lizard
-        </Typography>
-        
-      </CardContent>
-      <CardActions>
-     <Button sx={{margin:"0",backgroundColor:"#6d4c41",color:'white'}}  >Add To Card</Button>
-      </CardActions>
-    </Card>
-
-
-    <Card  className='w-60 h-60 flex flex-col  justify-between items-center p-5'>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        
-        className=' '
-        sx={{width:"100px"}}
-        image="src\assets\logo.png"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div" sx={{padding:"0",margin:"0"}}>
-          Lizard
-        </Typography>
-        
-      </CardContent>
-      <CardActions>
-     <Button sx={{margin:"0",backgroundColor:"#6d4c41",color:'white'}}  >Add To Card</Button>
-      </CardActions>
-    </Card>
+    <Box className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 p-5">
+      {product.map((item,idx)=>(
+         <Card className=" flex flex-col  justify-between  p-2"   key={idx}>
+          <CardMedia
+            component="img"
+            alt="green iguana"
+           className=" h-[156px] xl:h-[250px] lg:h-[204px] rounded-lg object-cover"
+            sx={{ 
+   }}
+           image={ item.imageUrl || fallbackImage}
+            onError={(e) => {
+              e.target.src = fallbackImage; 
+            }}
+          />
+          <CardContent className="flex justify-between">
+            <Typography
+              level="title-lg"
+             
+              sx={{fontSize:"16px", fontWeight:600,color:"#5d4037"}}
+              
+            >
+              {item.itemName}
+            </Typography>
+            <Typography level="title-lg" sx={{fontSize:"16px", fontWeight:600 ,color:"#8d6e63"}} >₹{item.itemPrice}</Typography>
+          </CardContent>
+          <CardActions className=" flex justify-center">
+            <Button
+              sx={{ margin: "0", backgroundColor: "#6d4c41", color: "white" ,fontSize:"11px" }}
+            >
+              Add To Card
+            </Button>
+          </CardActions>
+        </Card>
+      ))}
     </Box>
-  )
+  );
 }
 
-export default Product
+export default Product;
