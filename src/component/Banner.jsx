@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Box, Stack } from "@mui/material";
+import banner1 from "../assets/banner1.png";
+import banner2 from "../assets/banner2.png";
+import banner3 from "../assets/banner3.png";
 function Banner() {
   const images = [
-    "src/assets/banner1.png", // Your 30% offer Indian food
-    "src/assets/banner2.png", // Your 50% off Chinese food
-    "src/assets/banner3.png", // Your food-only banner
+   banner1,banner2,banner3
   ];
   const [index, setIndex] = useState(0);
 
