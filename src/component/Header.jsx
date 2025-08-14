@@ -26,7 +26,7 @@ function Header({cartCount}) {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "#efebe9" }}>
+      <AppBar position="static" sx={{ backgroundColor: "#efebe9" }} >
         <Toolbar
           variant="dense"
           sx={{ display: "flex", justifyContent: "space-between" }}
@@ -35,7 +35,8 @@ function Header({cartCount}) {
             component="img"
             src={Logo}
             alt="Logo"
-            className="w-18 py-2"
+            className="w-18 py-2 cursor-pointer"
+             onClick={() => navigate(`/`)}
           />
           <Badge
             badgeContent={cartCount}

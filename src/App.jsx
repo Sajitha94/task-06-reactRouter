@@ -13,12 +13,13 @@ function App() {
 
   return (
     <Router>
+       <Header cartCount={cart.length}  />
       <Routes>
         <Route
           path="/"
           element={
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <Header cartCount={cart.length} />
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px",padding:"10px" }} >
+             
               <Banner />
               <Product  cart={cart} setCart={setCart}/>
             </Box>
