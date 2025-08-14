@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import Logo from "../assets/logo.png";
 
 function Header() {
  
@@ -24,7 +25,7 @@ function Header() {
   <AppBar position="static" sx={{ backgroundColor: '#efebe9' }}>
   <Toolbar variant="dense" sx={{ display: 'flex', justifyContent:'space-between' }}>
  <Box component="img"
-          src="src/assets/logo.png"   // <- put your logo image path here
+          src={Logo}   // <- put your logo image path here
           alt="Logo"
          className='w-18 py-2'
         />
