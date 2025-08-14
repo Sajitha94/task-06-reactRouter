@@ -21,7 +21,7 @@ function Banner() {
       <Box
         component="img"
         src={images[index]}
-        className="w-5/6 h-96 rounded-xl transition-opacity duration-500 ease-in-out"
+        className="w-5/6 md:h-96 h-56 rounded-xl transition-opacity duration-500 ease-in-out"
       />
 
       <Stack
