@@ -24,7 +24,7 @@ function Header() {
   <AppBar position="static" sx={{ backgroundColor: '#efebe9' }}>
   <Toolbar variant="dense" sx={{ display: 'flex', justifyContent:'space-between' }}>
  <Box component="img"
-          src="src\assets\logo.png"   // <- put your logo image path here
+          src="src/assets/logo.png"   // <- put your logo image path here
           alt="Logo"
          className='w-18 py-2'
         />
