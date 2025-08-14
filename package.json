@@ -17,8 +17,8 @@
     "@mui/material": "^7.3.1",
     "@mui/styled-engine-sc": "^7.3.1",
     "@tailwindcss/vite": "^4.1.11",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-material-ui-carousel": "^3.4.2",
     "styled-components": "^6.1.19",
     "tailwindcss": "^4.1.11"
