@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
@@ -7,26 +6,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import fallbackImage from "../assets/banner3.png";
-import { REST_HOST_NAME, SERVICE_ENDPOINT } from "../backend";
+import { useNavigate } from "react-router-dom";
+import { useRestaurant } from "../pages/Restaurant";
 
 function Product({ cart, setCart }) {
-  const [product, setProduct] = useState([]);
-  const [error, setError] = useState("");
-
-
-  useEffect(() => {
-    fetch(
-      "https://api.allorigins.win/raw?url=https://fakerestaurantapi.runasp.net/api/Restaurant/items"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
-        console.log(data);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  }, []);
+  const { product } = useRestaurant();
+  const navigate = useNavigate();
 
   function AddtoCart(item) {
     const alreadyExist = cart.some((value) => {
@@ -51,6 +36,9 @@ function Product({ cart, setCart }) {
             image={item.imageUrl || fallbackImage}
             onError={(e) => {
               e.target.src = fallbackImage;
+            }}
+            onClick={() => {
+              navigate(`/product/${item.itemID}`);
             }}
           />
           <CardContent className="flex justify-between">

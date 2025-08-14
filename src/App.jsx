@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 import Banner from "./component/Banner";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddtoCart from "./pages/addtoCart";
+import ProductDetails from "./pages/productDetails";
+import {  RestaurantProvider } from "./pages/Restaurant";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -13,6 +15,7 @@ function App() {
 
   return (
     <Router>
+      <RestaurantProvider>
        <Header cartCount={cart.length}  />
       <Routes>
         <Route
@@ -26,7 +29,9 @@ function App() {
           }
         />
          <Route path="/addtocart" element={<AddtoCart/>}/>
+         <Route path="/product/:id" element={<ProductDetails/>}/>
       </Routes>
+      </RestaurantProvider>
     </Router>
   );
 }
