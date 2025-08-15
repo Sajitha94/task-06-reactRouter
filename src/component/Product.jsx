@@ -18,14 +18,13 @@ function Product({ cart, setCart }) {
       return value.itemID == item.itemID;
     });
     if (alreadyExist) {
-      setCart((pre) => 
-        pre.map((cartItem) => 
+      setCart((pre) =>
+        pre.map((cartItem) =>
           cartItem.itemID == item.itemID
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         )
       );
-
     } else {
       setCart((val) => [...val, { ...item, quantity: 1 }]);
     }
@@ -63,7 +62,40 @@ function Product({ cart, setCart }) {
             </Typography>
           </CardContent>
           <CardActions className=" flex justify-center">
-            <Button
+            {cart.some((cartItem) => cartItem.itemID == item.itemID) ? (
+              <Box className="flex gap-2 items-center">
+                <Button
+                  variant="contained"
+                  sx={{ backgroundColor: "#6d4c41", minWidth: 32 }}
+                  onClick={() => {
+                    setCart((pre) =>
+                      pre.map((cartItem) =>
+                        cartItem.itemID == item.itemID
+                          ? {
+                              ...cartItem,
+                              quantity: Math.max(cartItem.quantity - 1, 1),
+                            }
+                          : cartItem
+                      )
+                    );
+                  }}
+                >
+                  -
+                </Button>
+                <Typography sx={{ fontWeight: "bold", textAlign: "center" }}>
+                  {
+                    cart.find((cartItem )=> cartItem.itemID == item.itemID)
+                      ?.quantity
+                  }
+                </Typography>
+                <Button  variant="contained"
+                  sx={{ backgroundColor: "#6d4c41", minWidth: 32}} onClick={()=>{
+                    AddtoCart(item);
+                  }}> + </Button>
+              </Box>
+            ) : (
+              <>
+               <Button
               sx={{
                 margin: "0",
                 backgroundColor: "#6d4c41",
@@ -76,6 +108,10 @@ function Product({ cart, setCart }) {
             >
               Add To Card
             </Button>
+              </>
+            )}
+
+            
           </CardActions>
         </Card>
       ))}

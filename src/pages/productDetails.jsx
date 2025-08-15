@@ -24,16 +24,13 @@ function ProductDetails({ cart, setCart }) {
       return value.itemID == item.itemID;
     });
     if (alreadyExist) {
-      setCart((pre)=>
-      pre.map((cartItem) => 
-        cartItem.itemID == item.itemID
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      ));
-
-
-
-
+      setCart((pre) =>
+        pre.map((cartItem) =>
+          cartItem.itemID == item.itemID
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        )
+      );
     } else {
       setCart((val) => [...val, { ...item, quantity: 1 }]);
     }
@@ -86,19 +83,6 @@ function ProductDetails({ cart, setCart }) {
             </Box>
           </CardContent>
           <CardActions className=" flex justify-center">
-            {/* <Button
-              sx={{
-                margin: "0",
-                backgroundColor: "#6d4c41",
-                color: "white",
-                fontSize: "11px",
-              }}
-               onClick={() => {
-                AddtoCart(item);
-              }}
-            >
-              Add To Card
-            </Button> */}
             {cart.some((cartItem) => cartItem.itemID == item.itemID) ? (
               <Box className="flex gap-2 items-center">
                 <Button
@@ -120,7 +104,6 @@ function ProductDetails({ cart, setCart }) {
                   -
                 </Button>
                 <Typography sx={{ fontWeight: "bold", textAlign: "center" }}>
-                 
                   {
                     cart.find((cartItem) => cartItem.itemID == item.itemID)
                       ?.quantity
@@ -129,17 +112,28 @@ function ProductDetails({ cart, setCart }) {
                 <Button
                   variant="contained"
                   sx={{ backgroundColor: "#6d4c41", minWidth: 32 }}
-                 onClick={() => {
-        AddtoCart(item);
-      }}
+                  onClick={() => {
+                    AddtoCart(item);
+                  }}
                 >
-                  
                   +
                 </Button>
               </Box>
             ) : (
               <>
-                <h1>sa</h1>
+                <Button
+                  sx={{
+                    margin: "0",
+                    backgroundColor: "#6d4c41",
+                    color: "white",
+                    fontSize: "11px",
+                  }}
+                  onClick={() => {
+                    AddtoCart(item);
+                  }}
+                >
+                  Add To Card
+                </Button>
               </>
             )}
           </CardActions>
