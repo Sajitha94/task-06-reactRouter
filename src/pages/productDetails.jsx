@@ -12,12 +12,23 @@ import {
 } from "@mui/material";
 import fallbackImage from "../assets/banner3.png";
 
-function ProductDetails() {
+function ProductDetails({ cart, setCart }) {
   const { id } = useParams();
   console.log(id);
   const { product } = useRestaurant();
   const productMatch = product.filter((val) => val.itemID == id);
   console.log(productMatch);
+
+function AddtoCart(item) {
+    const alreadyExist = cart.some((value) => {
+      return value.itemID == item.itemID;
+    });
+    if (alreadyExist) {
+      alert("Item already added to the cart");
+    } else {
+      setCart((val) => [...val, item]);
+    }
+  }
 
   return (
     <Box className=" p-5">
@@ -74,7 +85,9 @@ function ProductDetails() {
                 color: "white",
                 fontSize: "11px",
               }}
-              
+               onClick={() => {
+                AddtoCart(item);
+              }}
             >
               Add To Card
             </Button>

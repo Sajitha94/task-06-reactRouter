@@ -11,7 +11,6 @@ export function RestaurantProvider({ children }) {
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
-       
       })
       .catch((err) => {
         console.log(err);

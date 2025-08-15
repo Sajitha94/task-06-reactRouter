@@ -29,7 +29,7 @@ function App() {
           }
         />
          <Route path="/addtocart" element={<AddtoCart/>}/>
-         <Route path="/product/:id" element={<ProductDetails/>}/>
+         <Route path="/product/:id" element={<ProductDetails cart={cart} setCart={setCart}/>}/>
       </Routes>
       </RestaurantProvider>
     </Router>

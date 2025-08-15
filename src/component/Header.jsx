@@ -26,7 +26,7 @@ function Header({cartCount}) {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "#efebe9" }} >
+      <AppBar  sx={{ backgroundColor: "#efebe9",top:0,position:"fixed" }} >
         <Toolbar
           variant="dense"
           sx={{ display: "flex", justifyContent: "space-between" }}
