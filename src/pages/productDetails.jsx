@@ -86,8 +86,7 @@ function ProductDetails({ cart, setCart }) {
             {cart.some((cartItem) => cartItem.itemID == item.itemID) ? (
               <Box className="flex gap-2 items-center">
                 <Button
-                  variant="contained"
-                  sx={{ backgroundColor: "#6d4c41", minWidth: 32 }}
+                  sx={{ backgroundColor: "#6d4c41", minWidth: "10px",borderRadius:"50%",color:"white",paddingTop:"4px" }}
                   onClick={() => {
                     setCart((prev) =>
                       prev.map((cartItem) =>
@@ -110,8 +109,7 @@ function ProductDetails({ cart, setCart }) {
                   }
                 </Typography>
                 <Button
-                  variant="contained"
-                  sx={{ backgroundColor: "#6d4c41", minWidth: 32 }}
+                  sx={{ backgroundColor: "#6d4c41", minWidth: "10px",borderRadius:"50%",color:"white",paddingTop:"4px" }}
                   onClick={() => {
                     AddtoCart(item);
                   }}
