@@ -56,7 +56,7 @@ function ProductDetails({ cart, setCart }) {
               navigate(`/product/${item.itemID}`);
             }}
           />
-          <CardContent className="flex flex-col gap-1 md:w-[50vw]  ">
+          <CardContent className="flex flex-col gap-2 md:w-[50vw]  " style={{padding:"0" ,marginTop:"10px" ,paddingLeft:"5px",paddingRight:"5px"}}>
             <Box className="flex justify-between items-center ">
               <Typography
                 level="title-lg"
@@ -82,7 +82,7 @@ function ProductDetails({ cart, setCart }) {
               </Typography>
             </Box>
           </CardContent>
-          <CardActions className=" flex justify-center" style={{padding:"3px", marginBottom:"20px"}}>
+          <CardActions className=" flex gap-2 justify-center" style={{padding:"3px", marginBottom:"20px"}}>
             {cart.some((cartItem) => cartItem.itemID == item.itemID) ? (
               <Box className="flex gap-2 items-center">
                 <Button
