@@ -37,7 +37,7 @@ function ProductDetails({ cart, setCart }) {
   }
 
   return (
-    <Box className=" p-5">
+    <Box className=" p-5" sx={{pt:12}}>
       {productMatch.map((item, idx) => (
         <Card
           className=" flex flex-col  justify-center items-center  p-2"
@@ -56,7 +56,7 @@ function ProductDetails({ cart, setCart }) {
               navigate(`/product/${item.itemID}`);
             }}
           />
-          <CardContent className="flex flex-col gap-1 w-[50vw]  ">
+          <CardContent className="flex flex-col gap-1 md:w-[50vw]  ">
             <Box className="flex justify-between items-center ">
               <Typography
                 level="title-lg"
@@ -71,18 +71,18 @@ function ProductDetails({ cart, setCart }) {
                 ₹{item.itemPrice}
               </Typography>
             </Box>
-            <Box className="flex flex-col justify-start ">
-              <Typography sx={{ fontSize: "13px", color: "#6d4c41" }}>
+            <Box className="flex gap-2  justify-between ">
+              <Typography sx={{ fontSize: "13px", color: "gray",fontWeight:600 }}>
                 {item.itemDescription}
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", fontWeight: 500, color: "#795548" }}
+                sx={{ fontSize: "14px", fontWeight: 500, color: "#795548",fontWeight:600  }}
               >
                 {item.restaurantName}
               </Typography>
             </Box>
           </CardContent>
-          <CardActions className=" flex justify-center">
+          <CardActions className=" flex justify-center" style={{padding:"3px", marginBottom:"20px"}}>
             {cart.some((cartItem) => cartItem.itemID == item.itemID) ? (
               <Box className="flex gap-2 items-center">
                 <Button
