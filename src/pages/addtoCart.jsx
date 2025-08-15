@@ -102,7 +102,7 @@ function AddtoCart({ cart, setCart }) {
                     "en-IN"
                   )}
                 </TableCell>
-                <TableCell align="center" style={{ width: 100 }}>
+                <TableCell align="center"  style={{ width: "100px" }}>
                   <Button
                     sx={{
                       border: "1px solid red",
@@ -140,13 +140,11 @@ function AddtoCart({ cart, setCart }) {
                   )
                   .toLocaleString("en-IN")}
               </TableCell>
-              <TableCell align="start"  sx={{ fontWeight: "bold", padding: "10px" }}
-                style={{ width: "100px" }}>10% Discount: ₹{" "} {cart
+              <TableCell align="center"  sx={{  padding: "10px", color:"#795548", fontSize:"13px",fontWeight:'bold' }}
+                style={{ width: "100px" }} > 10% Discount: ₹{cart
                   .reduce(
                     (acc, item) => {
-                      const price=item.itemPrice * (item.quantity || 1)
-                      const Discount=price *0.1
-                      return acc +Discount
+                      return  acc + (item.itemPrice * (item.quantity || 1) * 0.9)
                       },0 ).toLocaleString("en-IN")}
                  
                    </TableCell>
