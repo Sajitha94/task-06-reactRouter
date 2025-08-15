@@ -17,7 +17,7 @@ function Banner() {
   }, [images.length]);
 
   return (
-    <Box className=" justify-center flex items-center relative ">
+    <Box className=" justify-center flex items-center relative " sx={{py:12}}>
       <Box
         component="img"
         src={images[index]}

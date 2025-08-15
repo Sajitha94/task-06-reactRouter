@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddtoCart from "./pages/addtoCart";
 import ProductDetails from "./pages/productDetails";
 import {  RestaurantProvider } from "./pages/Restaurant";
+import { Margin } from "@mui/icons-material";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -16,7 +17,7 @@ function App() {
   return (
     <Router>
       <RestaurantProvider>
-       <Header cartCount={cart.length}  />
+       <Header cartCount={cart.length}   />
       <Routes>
         <Route
           path="/"
@@ -28,7 +29,7 @@ function App() {
             </Box>
           }
         />
-         <Route path="/addtocart" element={<AddtoCart/>}/>
+         <Route path="/addtocart" element={<AddtoCart  cart={cart} setCart={setCart}/>}/>
          <Route path="/product/:id" element={<ProductDetails cart={cart} setCart={setCart}/>}/>
       </Routes>
       </RestaurantProvider>

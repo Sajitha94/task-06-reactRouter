@@ -26,7 +26,7 @@ function Header({cartCount}) {
 
   return (
     <>
-      <AppBar  sx={{ backgroundColor: "#efebe9",top:0,position:"fixed" }} >
+      <AppBar position="fixed" sx={{ backgroundColor: "#efebe9" }} >
         <Toolbar
           variant="dense"
           sx={{ display: "flex", justifyContent: "space-between" }}
@@ -56,6 +56,8 @@ function Header({cartCount}) {
           </Badge>
         </Toolbar>
       </AppBar>
+
+     
     </>
   );
 }
