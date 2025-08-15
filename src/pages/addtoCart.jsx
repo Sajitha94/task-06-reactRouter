@@ -41,9 +41,9 @@ function AddtoCart({ cart, setCart }) {
                     alt={item.itemName}
                     style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 8 }} /></TableCell>
               <TableCell align="right">{item.itemPrice}</TableCell>
-              <TableCell align="right">quantity</TableCell>
+              <TableCell align="right">{item.quantity }</TableCell>
                <TableCell align="right">
-                  ₹{(item.itemPrice * ( 1)).toLocaleString('en-IN')}
+                  ₹{(item.itemPrice * ( item.quantity ||1)).toLocaleString('en-IN')}
                 </TableCell>
             </TableRow>
             
@@ -53,7 +53,7 @@ function AddtoCart({ cart, setCart }) {
            <TableCell colSpan={4} align="right" sx={{ fontWeight: "bold" }}>
           Grand Total
         </TableCell>
-         <TableCell align="right" sx={{ fontWeight: "bold" }}>
+         <TableCell align="right" sx={{ fontWeight: "bold",padding:"10px" }}>
            ₹ {cart.reduce((acc,item)=>acc+item.itemPrice * (item.quantity || 1),0).toLocaleString('en-IN')}
          </TableCell>
          </TableRow>
