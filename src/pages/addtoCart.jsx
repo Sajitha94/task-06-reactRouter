@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 function AddtoCart({ cart, setCart }) {
   console.log(cart, setCart);
@@ -17,14 +17,15 @@ function AddtoCart({ cart, setCart }) {
      
 
  <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 550 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{ fontWeight: "bold" }}>Item Name</TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>Image</TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>Price&nbsp;(₹)</TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>Quantity</TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>Total&nbsp;(₹)</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }} style={{width:"100px"}}>Item Name</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }} style={{width:"100px"}}>Image</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }} style={{width:"100px"}}>Price&nbsp;(₹)</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }} style={{width:"100px"}}>Quantity</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }} style={{width:"100px"}}>Total&nbsp;(₹)</TableCell>
+            <TableCell align="center" style={{width:100}}><Button  sx={{border:"1px solid red", color:"red",paddingTop:0,paddingBottom:0}} >Clear All</Button></TableCell>
             
           </TableRow>
         </TableHead>
@@ -32,28 +33,29 @@ function AddtoCart({ cart, setCart }) {
           {cart.map((item, idx) => (
             <TableRow
               key={item.itemID}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              
             >
-              <TableCell component="th" scope="row">
+              <TableCell align="center" style={{width:"100px"}}>
                 {item.itemName}
               </TableCell>
-              <TableCell align="right" sx={{display:"flex",justifyContent:"end"}}><img src={item.imageUrl}
+              <TableCell align="center" sx={{display:"flex",justifyContent:"center"}}   ><img src={item.imageUrl}
                     alt={item.itemName}
-                    style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 8 }} /></TableCell>
-              <TableCell align="right">{item.itemPrice}</TableCell>
-              <TableCell align="right">{item.quantity }</TableCell>
-               <TableCell align="right">
+                    style={{ width:60, objectFit: 'cover', borderRadius: 8 }} /></TableCell>
+              <TableCell align="center" style={{width:"100px"}}>{item.itemPrice}</TableCell>
+              <TableCell align="center" style={{width:"100px"}}>{item.quantity }</TableCell>
+               <TableCell align="center" style={{width:"100px"}}>
                   ₹{(item.itemPrice * ( item.quantity ||1)).toLocaleString('en-IN')}
                 </TableCell>
+                <TableCell align="center" style={{width:100}}><Button  sx={{border:"1px solid red", color:"red",paddingTop:0,paddingBottom:0}} >Remove</Button></TableCell>
             </TableRow>
             
          ))}
 
          <TableRow>
-           <TableCell colSpan={4} align="right" sx={{ fontWeight: "bold" }}>
+           <TableCell colSpan={4} align="right" sx={{ fontWeight: "bold" }} style={{width:"100px"}}>
           Grand Total
         </TableCell>
-         <TableCell align="right" sx={{ fontWeight: "bold",padding:"10px" }}>
+         <TableCell align="center" sx={{ fontWeight: "bold",padding:"10px" }} style={{width:"100px"}}>
            ₹ {cart.reduce((acc,item)=>acc+item.itemPrice * (item.quantity || 1),0).toLocaleString('en-IN')}
          </TableCell>
          </TableRow>
