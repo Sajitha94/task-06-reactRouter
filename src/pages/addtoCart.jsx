@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 function AddtoCart({ cart, setCart }) {
   function RemoveItem(item) {
@@ -17,6 +17,7 @@ function AddtoCart({ cart, setCart }) {
 
   return (
     <Box sx={{ py: 18 }}>
+      {cart.length >0 ?(
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 550 }} size="small" aria-label="a dense table">
           <TableHead>
@@ -121,14 +122,14 @@ function AddtoCart({ cart, setCart }) {
               <TableCell
                 colSpan={4}
                 align="right"
-                sx={{ fontWeight: "bold" }}
+                sx={{ fontWeight: "bold",color:"gray" }}
                 style={{ width: "100px" }}
               >
                 Grand Total
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ fontWeight: "bold", padding: "10px" }}
+                sx={{ fontWeight: "bold", padding: "10px",color:"gray" }}
                 style={{ width: "100px" }}
               >
                 ₹{" "}
@@ -139,10 +140,26 @@ function AddtoCart({ cart, setCart }) {
                   )
                   .toLocaleString("en-IN")}
               </TableCell>
+              <TableCell align="start"  sx={{ fontWeight: "bold", padding: "10px" }}
+                style={{ width: "100px" }}>10% Discount: ₹{" "} {cart
+                  .reduce(
+                    (acc, item) => {
+                      const price=item.itemPrice * (item.quantity || 1)
+                      const Discount=price *0.1
+                      return acc +Discount
+                      },0 ).toLocaleString("en-IN")}
+                 
+                   </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
+      ) :(
+        <Box sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+           <Typography sx={{ fontSize: '24px', fontWeight: 600 ,color:"gray",paddingTop:"70px"}}>Your Cart is Empty</Typography>
+        </Box>
+      )
+    }
     </Box>
   );
 }
