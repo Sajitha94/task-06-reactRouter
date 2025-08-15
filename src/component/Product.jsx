@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import fallbackImage from "../assets/banner3.png";
 import { useNavigate } from "react-router-dom";
 import { useRestaurant } from "../pages/Restaurant";
+import { Padding } from "@mui/icons-material";
 
 function Product({ cart, setCart }) {
   const { product } = useRestaurant();
@@ -33,7 +34,7 @@ function Product({ cart, setCart }) {
   return (
     <Box className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 p-5">
       {product.map((item, idx) => (
-        <Card className=" flex flex-col  justify-between  p-2" key={idx}>
+        <Card className=" flex flex-col  justify-between  p-2 gap-3" key={idx}>
           <CardMedia
             component="img"
             alt="green iguana"
@@ -47,23 +48,23 @@ function Product({ cart, setCart }) {
               navigate(`/product/${item.itemID}`);
             }}
           />
-          <CardContent className="flex justify-between">
+          <CardContent className="flex justify-between md:mx-2" style={{padding:0}}>
             <Typography
               level="title-lg"
-              sx={{ fontSize: "16px", fontWeight: 600, color: "#5d4037" }}
+              sx={{ fontSize: "13px", fontWeight: 600, color: "#5d4037" }}
             >
               {item.itemName}
             </Typography>
             <Typography
               level="title-lg"
-              sx={{ fontSize: "16px", fontWeight: 600, color: "#8d6e63" }}
+              sx={{ fontSize: "13px", fontWeight: 600, color: "#8d6e63" }}
             >
               ₹{item.itemPrice}
             </Typography>
           </CardContent>
-          <CardActions className=" flex justify-center">
+          <CardActions className=" flex justify-center" sx={{padding:"0"}}>
             {cart.some((cartItem) => cartItem.itemID == item.itemID) ? (
-              <Box className="flex gap-2 items-center">
+              <Box className="flex gap-2 items-center" > 
                 <Button
                   variant="contained"
                   sx={{ backgroundColor: "#6d4c41", minWidth: 32 }}
@@ -102,6 +103,7 @@ function Product({ cart, setCart }) {
                 color: "white",
                 fontSize: "11px",
               }}
+              
               onClick={() => {
                 AddtoCart(item);
               }}

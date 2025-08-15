@@ -17,15 +17,14 @@ function Banner() {
   }, [images.length]);
 
   return (
-    <Box className=" justify-center flex items-center relative " sx={{py:12}}>
+    <Box className=" justify-center flex items-center relative " sx={{pt:12}}>
       <Box
         component="img"
         src={images[index]}
-        className="w-5/6 md:h-96 h-56 rounded-xl transition-opacity duration-500 ease-in-out"
+        className="w-5/6 md:h-96 h-56 rounded-xl transition-opacity duration-1500 ease-in-out"
       />
-
       <Stack
-        className="absolute bottom-2 transform -translate-x-1/2 flex gap-2"
+        className=" absolute bottom-2  ms-12 transform -translate-x-1/2 flex gap-2 justify-center items-center"
         sx={{ flexDirection: "row" }}
       >
         {images.map((item, idx) => (
