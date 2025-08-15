@@ -18,12 +18,16 @@ function Product({ cart, setCart }) {
       return value.itemID == item.itemID;
     });
     if (alreadyExist) {
-    setCart.map((cartItem)=>{
-        cartItem.itemID == item.itemID ?{...cartItem,quantity:cartItem.quantity + 1}:cartItem
-    })
-    
+      setCart((pre) => 
+        pre.map((cartItem) => 
+          cartItem.itemID == item.itemID
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        )
+      );
+
     } else {
-      setCart((val) => [...val, {...item,quantity:1}]);
+      setCart((val) => [...val, { ...item, quantity: 1 }]);
     }
   }
 

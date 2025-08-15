@@ -19,17 +19,23 @@ function ProductDetails({ cart, setCart }) {
   const productMatch = product.filter((val) => val.itemID == id);
   console.log(productMatch);
 
-function AddtoCart(item) {
+  function AddtoCart(item) {
     const alreadyExist = cart.some((value) => {
       return value.itemID == item.itemID;
     });
     if (alreadyExist) {
-    setCart.map((cartItem)=>{
-        cartItem.itemID == item.itemID ?{...cartItem,quantity:cartItem.quantity + 1}:cartItem
-    })
-    
+      setCart((pre)=>
+      pre.map((cartItem) => 
+        cartItem.itemID == item.itemID
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      ));
+
+
+
+
     } else {
-      setCart((val) => [...val, {...item,quantity:1}]);
+      setCart((val) => [...val, { ...item, quantity: 1 }]);
     }
   }
 
@@ -55,33 +61,32 @@ function AddtoCart(item) {
           />
           <CardContent className="flex flex-col gap-1 w-[50vw]  ">
             <Box className="flex justify-between items-center ">
-                
-            <Typography
-              level="title-lg"
-              sx={{ fontSize: "16px", fontWeight: 600, color: "#5d4037" }}
-            >
-              {item.itemName}
-            </Typography>
-            <Typography
-              level="title-lg"
-              sx={{ fontSize: "16px", fontWeight: 600, color: "#8d6e63" }}
-            >
-              ₹{item.itemPrice}
-            </Typography>
+              <Typography
+                level="title-lg"
+                sx={{ fontSize: "16px", fontWeight: 600, color: "#5d4037" }}
+              >
+                {item.itemName}
+              </Typography>
+              <Typography
+                level="title-lg"
+                sx={{ fontSize: "16px", fontWeight: 600, color: "#8d6e63" }}
+              >
+                ₹{item.itemPrice}
+              </Typography>
             </Box>
             <Box className="flex flex-col justify-start ">
-                <Typography sx={{ fontSize: "13px", color: "#6d4c41" }}>
-                     {item.itemDescription}
-                </Typography>
-                <Typography sx={{ fontSize: "14px", fontWeight: 500, color: "#795548" }}>
-                     {item.restaurantName}
-                </Typography>
-                
+              <Typography sx={{ fontSize: "13px", color: "#6d4c41" }}>
+                {item.itemDescription}
+              </Typography>
+              <Typography
+                sx={{ fontSize: "14px", fontWeight: 500, color: "#795548" }}
+              >
+                {item.restaurantName}
+              </Typography>
             </Box>
-            
           </CardContent>
           <CardActions className=" flex justify-center">
-            <Button
+            {/* <Button
               sx={{
                 margin: "0",
                 backgroundColor: "#6d4c41",
@@ -93,7 +98,50 @@ function AddtoCart(item) {
               }}
             >
               Add To Card
-            </Button>
+            </Button> */}
+            {cart.some((cartItem) => cartItem.itemID == item.itemID) ? (
+              <Box className="flex gap-2 items-center">
+                <Button
+                  variant="contained"
+                  sx={{ backgroundColor: "#6d4c41", minWidth: 32 }}
+                  onClick={() => {
+                    setCart((prev) =>
+                      prev.map((cartItem) =>
+                        cartItem.itemID === item.itemID
+                          ? {
+                              ...cartItem,
+                              quantity: Math.max(cartItem.quantity - 1, 1),
+                            }
+                          : cartItem
+                      )
+                    );
+                  }}
+                >
+                  -
+                </Button>
+                <Typography sx={{ fontWeight: "bold", textAlign: "center" }}>
+                 
+                  {
+                    cart.find((cartItem) => cartItem.itemID == item.itemID)
+                      ?.quantity
+                  }
+                </Typography>
+                <Button
+                  variant="contained"
+                  sx={{ backgroundColor: "#6d4c41", minWidth: 32 }}
+                 onClick={() => {
+        AddtoCart(item);
+      }}
+                >
+                  
+                  +
+                </Button>
+              </Box>
+            ) : (
+              <>
+                <h1>sa</h1>
+              </>
+            )}
           </CardActions>
         </Card>
       ))}
