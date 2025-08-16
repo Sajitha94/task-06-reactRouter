@@ -276,7 +276,7 @@ function AddtoCart({ cart, setCart }) {
                   <img
                     src={item.imageUrl}
                     alt={item.itemName}
-                    className="w-12 h-12 rounded-lg"
+                    className="w-16 h-16 rounded-lg"
                   />
                 </Box>
                 <Box className="flex flex-col justify-between items-center gap-2">
