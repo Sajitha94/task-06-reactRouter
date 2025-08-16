@@ -99,7 +99,8 @@ function Product({ cart, setCart }) {
                 margin: "0",
                 backgroundColor: "#6d4c41",
                 color: "white",
-                fontSize: "11px",
+                fontSize: "9px",
+                padding:"4px"
               }}
               
               onClick={() => {
