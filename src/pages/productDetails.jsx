@@ -87,7 +87,7 @@ function ProductDetails({ cart, setCart }) {
               </Typography>
             </Box>
             <Box
-              className="flex gap-2  justify-between items-center  "
+              className="flex gap-2  justify-center width: 65vw;  "
               sx={{width: "65vw"}}
             >
               <Typography
