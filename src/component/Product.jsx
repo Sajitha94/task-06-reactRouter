@@ -73,10 +73,10 @@ function Product({ cart, setCart }) {
                         cartItem.itemID == item.itemID
                           ? {
                               ...cartItem,
-                              quantity: Math.max(cartItem.quantity - 1, 1),
+                              quantity: cartItem.quantity - 1,
                             }
                           : cartItem
-                      )
+                      ).filter((cartItem => cartItem.quantity > 0))
                     );
                   }}
                 >
